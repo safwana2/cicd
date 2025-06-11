@@ -13,14 +13,14 @@ jobs:
         uses: actions/checkout@v3
       
        
-       - nmae: update my system
-         run: sudo apt-get update
+      - name: update my system
+        run: sudo apt-get update
 
-       - name: am going to build my image
-         run docker build -t ${{ secrets.DOCKER_HUB_USERNAME}}/jomacs:latest
+      - name: am going to build my image
+        run: docker build -t ${{ secrets.DOCKER_HUB_USERNAME}}/jomacs:latest
        
-       - name: login to docker hub
-         run: docker login -u ${{ secrets.DOCKER_HUB_USERNAME }} -p ${{ secrets.DOCKER_HUB_PASSWORD }}
+      - name: login to docker hub
+        run: docker login -u ${{ secrets.DOCKER_HUB_USERNAME }} -p ${{ secrets.DOCKER_HUB_PASSWORD }}
 
       - name: push my image to docker hub
         run: docker push ${{ secrets.DOCKER_HUB_USERNAME}}/jomacs:latest
@@ -28,12 +28,13 @@ jobs:
   publish-image:
     needs: build-and-push
     runs-on: ubuntu-latest
-      steps:
-        - name: Checkout
-          uses: actions/checkout@v3
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v3
         
-        - name: say hello 
-          run: echo "hello world"
+      - name: say hello 
+        run: echo "hello world"
+       
           
 
 
