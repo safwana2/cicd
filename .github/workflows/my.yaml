@@ -18,10 +18,10 @@ jobs:
         run: sudo apt-get update
 
       - name: login to docker hub
-        run: docker login -u ${{ secrets.DOCKER_HUB_USERNAME }} -p ${{ secrets.DOCKER_HUB_PASSWORD }}
+        run: docker login --username=safwana12 --password=Burhan123@
 
       - name: am going to build my image
-        run: docker build  ${{ secrets.DOCKER_HUB_USERNAME }}/my_app .
+        run: docker build  -t ${{ secrets.DOCKER_HUB_USERNAME }}/my_app .
     
        
       
