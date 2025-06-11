@@ -18,13 +18,14 @@ jobs:
         run: sudo apt-get update
 
       - name: am going to build my image
-        run: docker build -t safwana12/jomacs:latest .
+        run: docker build  ${{ secrets.DOCKER_HUB_USERNAME }}/my_app .
+    
        
       - name: login to docker hub
         run: docker login -u ${{ secrets.DOCKER_HUB_USERNAME }} -p ${{ secrets.DOCKER_HUB_PASSWORD }}
 
       - name: push my image to docker hub
-        run: docker push ${{ secrets.DOCKER_HUB_USERNAME}}/jomacs:latest
+        run: docker push ${{ secrets.DOCKER_HUB_USERNAME}}/my_app
 
   publish-image:
     needs: build-and-push
