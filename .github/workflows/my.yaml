@@ -1,4 +1,4 @@
-name: Pushing image to my Docker Hub
+name: pushing image to my docker hub
 
 on:
   push:
@@ -11,19 +11,19 @@ jobs:
     steps:
       - name: Checkout
         uses: actions/checkout@v3
+      
+       
+      - name: update my system
+        run: sudo apt-get update
 
-      - name: Set up Docker
-        uses: docker/setup-buildx-action@v3
+      - name: am going to build my image
+        run: docker build -t docker.io/safwana12/jomacs:latest .
+       
+      - name: login to docker hub
+        run: docker login -u ${{ secrets.DOCKER_HUB_USERNAME }} -p ${{ secrets.DOCKER_HUB_PASSWORD }}
 
-      - name: Build Docker image
-        run: docker build -t ${{ secrets.DOCKER_HUB_USERNAME }}/jomacs:latest .
-
-
-      - name: Login to Docker Hub
-        run: echo "${{ secrets.DOCKER_HUB_PASSWORD }}" | docker login -u ${{ secrets.DOCKER_HUB_USERNAME }} --password-stdin
-
-      - name: Push Docker image
-        run: docker push ${{ secrets.DOCKER_HUB_USERNAME }}/jomacs:latest
+      - name: push my image to docker hub
+        run: docker push ${{ secrets.DOCKER_HUB_USERNAME}}/jomacs:latest
 
   publish-image:
     needs: build-and-push
@@ -31,6 +31,11 @@ jobs:
     steps:
       - name: Checkout
         uses: actions/checkout@v3
-
-      - name: Say Hello
+        
+      - name: say hello 
         run: echo "hello world"
+       
+          
+
+
+  is there mistake in it
