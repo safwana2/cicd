@@ -18,7 +18,7 @@ jobs:
         run: sudo apt-get update
 
       - name: am going to build my image
-        run: docker build -t docker.io/safwana12/jomacs:latest .
+        run: docker build -t safwana12/jomacs:latest .
        
       - name: login to docker hub
         run: docker login -u ${{ secrets.DOCKER_HUB_USERNAME }} -p ${{ secrets.DOCKER_HUB_PASSWORD }}
